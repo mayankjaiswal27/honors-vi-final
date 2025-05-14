@@ -1,6 +1,7 @@
 package com.airline.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Ticket {
@@ -13,6 +14,7 @@ public class Ticket {
 
     @ManyToOne
     @JoinColumn(name = "schedule_id", nullable = false)
+    @JsonBackReference
     private Schedule schedule;
 
     public Ticket() {}

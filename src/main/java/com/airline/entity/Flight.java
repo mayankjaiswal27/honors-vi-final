@@ -2,6 +2,7 @@ package com.airline.entity;
 
 import jakarta.persistence.*;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Flight {
@@ -19,6 +20,7 @@ public class Flight {
     private String destination;
 
     @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Schedule> schedules;
 
     public Flight() {}
@@ -28,7 +30,6 @@ public class Flight {
         this.destination = destination;
     }
 
-    // Getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getFlightNumber() { return flightNumber; }

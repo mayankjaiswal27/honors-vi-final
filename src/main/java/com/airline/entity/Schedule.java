@@ -2,6 +2,7 @@ package com.airline.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Schedule {
@@ -20,6 +21,7 @@ public class Schedule {
 
     @ManyToOne
     @JoinColumn(name = "flight_id", nullable = false)
+    @JsonBackReference
     private Flight flight;
 
     public Schedule() {}
