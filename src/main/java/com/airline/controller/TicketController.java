@@ -1,10 +1,12 @@
 package com.airline.controller;
 
+import com.airline.dto.TicketRequest;
+import com.airline.dto.TicketResponse;
+import com.airline.service.TicketService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.airline.entity.Ticket;
-import com.airline.service.TicketService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/tickets")
@@ -16,12 +18,12 @@ public class TicketController {
     }
 
     @PostMapping
-    public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket) {
-        return ResponseEntity.ok(ticketService.createTicket(ticket));
+    public ResponseEntity<TicketResponse> createTicket(@Valid @RequestBody TicketRequest ticketRequest) {
+        return ResponseEntity.ok(ticketService.createTicket(ticketRequest));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Ticket> getTicketById(@PathVariable Long id) {
+    public ResponseEntity<TicketResponse> getTicketById(@PathVariable Long id) {
         return ResponseEntity.ok(ticketService.getTicketById(id));
     }
 
